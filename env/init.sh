@@ -14,9 +14,9 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 for i in {1..3}
 do
-echo "  apiServerAddress: \"$(ifconfig eno1 |grep "inet " | cut -f 10 -d " ")"\" >> config/kind-example-config-$i.yaml
+echo "  apiServerAddress: \"$(ifconfig eno1 |grep "inet " | cut -f 10 -d " ")"\" >> /root/ddos/env/config/kind-example-config-$i.yaml
 done
 
-kind create cluster --config config/kind-example-config-1.yaml --name management0 &
-kind create cluster --config config/kind-example-config-2.yaml --name member0 &
-kind create cluster --config config/kind-example-config-3.yaml --name member1 &
+kind create cluster --config /root/ddos/env/config/kind-example-config-1.yaml --name management0 &
+kind create cluster --config /root/ddos/env/config/kind-example-config-2.yaml --name member0 &
+kind create cluster --config /root/ddos/env/config/kind-example-config-3.yaml --name member1 &
