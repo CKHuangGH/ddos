@@ -4,6 +4,5 @@ manage=$(awk NR==1 node_list)
 
 for i in $(cat node_list)
 do
-	sh ./rmsr.sh $i $manage &
+	sh ./rmsr.sh $i
 done
-echo "management node is $manage"
