@@ -21,13 +21,20 @@ do
 echo "  apiServerAddress: \"$(ifconfig eno1 |grep "inet " | cut -f 10 -d " ")"\" >> /root/ddos/env/config/kind-example-config-$i.yaml
 done
 
-kind create cluster --config /root/ddos/env/config/kind-example-config-1.yaml --name cluster0 &
-kind create cluster --config /root/ddos/env/config/kind-example-config-2.yaml --name cluster1 &
+kind create cluster --config /root/ddos/env/config/kind-example-config-1.yaml --name cluster0
+sleep 10
+cp /root/.kube/config /root/.kube/cluser0
+
+kind create cluster --config /root/ddos/env/config/kind-example-config-2.yaml --name cluster1
+sleep 10
+cp /root/.kube/config /root/.kube/cluser1
+
 kind create cluster --config /root/ddos/env/config/kind-example-config-3.yaml --name cluster2
+cp /root/.kube/config /root/.kube/cluser2
 
 sleep 30
 
-for j in `seq 0 3`
+for j in `seq 0 2`
 		do
 			kubectl config use-context kind-cluster$j
 			helm repo update
