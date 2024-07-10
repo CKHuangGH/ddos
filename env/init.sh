@@ -25,9 +25,9 @@ kind create cluster --config /root/ddos/env/config/kind-example-config-1.yaml --
 kind create cluster --config /root/ddos/env/config/kind-example-config-2.yaml --name cluster1 &
 kind create cluster --config /root/ddos/env/config/kind-example-config-3.yaml --name cluster2
 
-sleep 20
+sleep 30
 
-for j in `seq 1 3`
+for j in `seq 0 3`
 		do
 			kubectl config use-context kind-cluster$j
 			helm repo update
